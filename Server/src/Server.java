@@ -89,8 +89,8 @@ class ServerHandler implements Runnable {
                     case "STAND":
                         Server.players.get(this.id).setMove(false);
                         break;
-                    case "A":
-                        
+                    case "ATTACK":
+                        Server.players.get(this.id).setAttack(true);
                         break;
                     default:
                         if (message.charAt(0) == 'x'){
@@ -112,6 +112,7 @@ class ServerHandler implements Runnable {
                     client.dos.writeUTF(JSONObject);
                     client.dos.flush();
                 }
+                Server.players.get(this.id).setAttack(false);
             }
         } catch (IOException e) {
             Server.players.get(this.id).logout = true;
