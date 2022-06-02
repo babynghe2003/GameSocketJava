@@ -10,8 +10,8 @@ import com.google.gson.*;
 
 public class GamePanel extends JPanel implements ActionListener{
 
-    static final int SCREEN_WITDH = 600;
-    static final int SCREEN_HEIGHT = 600;
+    static final int SCREEN_WITDH = 1000;
+    static final int SCREEN_HEIGHT = 1000;
     static final int UNIT_SIZE = 100;
     static final int GAME_UNITS = (SCREEN_WITDH*SCREEN_HEIGHT)/UNIT_SIZE;
 
@@ -63,7 +63,8 @@ public class GamePanel extends JPanel implements ActionListener{
         for(Player player: players)
         if(!player.logout)
         {
-            new PlayerUI(player.getId(),player.x, player.y, this, step,player.isFaceLeft(),player.move).draw(g);
+            new PlayerUI(player.getId(),player.x, player.y, this, step,player.isFaceLeft(),player.move, player.health).draw(g);
+            new Weapon(player.getId(),player.x, player.y, this, player.direction, player.attack, player.isFaceLeft()).draw(g);
         }
          
     }
@@ -101,7 +102,6 @@ public class GamePanel extends JPanel implements ActionListener{
             for(Player player: players){
                 if(player.getId() == this.id)
                 this.playerCurrent = player;
-                System.out.println(player.getId() + " " + player.getX() + " " + player.getY());
                 this.players.add(player);
             }
             System.out.println("Received players: " + this.players.size());
@@ -162,8 +162,7 @@ public class GamePanel extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         time++;
-        if (time > 3){
-            time = 0;
+        if (time % 3==0){
             step++;
             if(step > 4)
                 step = 1;
@@ -174,6 +173,7 @@ public class GamePanel extends JPanel implements ActionListener{
     }
 
     public class MyKeyAdaper extends KeyAdapter {
+        //override keytype
         @Override
         public void keyPressed(KeyEvent e){
             switch(e.getKeyCode()){
@@ -193,6 +193,7 @@ public class GamePanel extends JPanel implements ActionListener{
                     sendData("ATTACK");
                     break;
                 case KeyEvent.VK_SPACE:
+                    
                     break;
                 default:
                     break;
@@ -215,7 +216,7 @@ public class GamePanel extends JPanel implements ActionListener{
                     sendData("STAND");
                     break;
                 case KeyEvent.VK_A:
-                    sendData("STAND");
+                    sendData("A");
                     break;
                 case KeyEvent.VK_SPACE:
                     break;

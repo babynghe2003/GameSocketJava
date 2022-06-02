@@ -8,7 +8,14 @@ public class Player {
     int id;
     public boolean logout;
     public boolean move = false;
+    public boolean attack = false;
 
+    int health = 6;
+
+    // setHealth
+    public void setHealth(int health) {
+        this.health = health;
+    }
 
     public char getDirection() {
         return direction;
