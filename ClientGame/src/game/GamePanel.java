@@ -1,3 +1,4 @@
+package game;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -15,7 +16,7 @@ public class GamePanel extends JPanel implements ActionListener{
     static final int UNIT_SIZE = 100;
     static final int GAME_UNITS = (SCREEN_WITDH*SCREEN_HEIGHT)/UNIT_SIZE;
 
-    Timer timer = new Timer(1000/600, this);
+    Timer timer = new Timer(1000/60, this);
     public ArrayList<Player> players = new ArrayList<Player>();
     Player playerCurrent = null;
     Socket socket = null;
@@ -23,7 +24,7 @@ public class GamePanel extends JPanel implements ActionListener{
     DataOutputStream dos = null;
     int ip = 8080;
 
-    int DELAY = 1000/50;
+    int DELAY = 1000/200;
     Random random;
 
     public int id;
@@ -60,6 +61,9 @@ public class GamePanel extends JPanel implements ActionListener{
     public void draw(Graphics2D g){
         g.translate(-(playerCurrent.x - SCREEN_WITDH/2 + UNIT_SIZE/2), -(playerCurrent.y-SCREEN_HEIGHT/2 + UNIT_SIZE/2));
         map.draw(g);
+        if (playerCurrent.logout){
+            System.exit(0);
+        }
         for(Player player: players)
         if(!player.logout)
         {
@@ -72,13 +76,13 @@ public class GamePanel extends JPanel implements ActionListener{
         if (playerCurrent != null){
             if (playerCurrent.move){
                 if(playerCurrent.getDirection() == 'R')
-                playerCurrent.x += 8;
+                playerCurrent.x += 4;
                 else if(playerCurrent.getDirection() == 'L')
-                playerCurrent.x -= 8;
+                playerCurrent.x -= 4;
                 else if(playerCurrent.getDirection() == 'U')
-                playerCurrent.y -= 8;
+                playerCurrent.y -= 4;
                 else if(playerCurrent.getDirection() == 'D')
-                playerCurrent.y += 8;
+                playerCurrent.y += 4;
                 sendData("x " + playerCurrent.x + " y " + playerCurrent.y);
 
             }
@@ -134,7 +138,12 @@ public class GamePanel extends JPanel implements ActionListener{
                 while (true) {
                     try{
                     Gson gson = new Gson();
-                    Player[] p = gson.fromJson(dis.readUTF(), Player[].class);
+                    String json = dis.readUTF();
+                    if(json.equals("You died")){
+                        System.out.println("You died");
+                        System.exit(0);
+                    }
+                    Player[] p = gson.fromJson(json, Player[].class);
                     players = new ArrayList<Player>();
                     for(Player player: p){
                         if(player.getId() == id)
@@ -143,6 +152,7 @@ public class GamePanel extends JPanel implements ActionListener{
                         
                     }
                 }catch(Exception e){
+            
                     System.out.println("Could not receive data from server");
                 }
                 }
@@ -162,7 +172,7 @@ public class GamePanel extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         time++;
-        if (time % 3==0){
+        if (time % 10==0){
             step++;
             if(step > 4)
                 step = 1;

@@ -1,7 +1,9 @@
+package sever;
 import java.io.*;
 import java.net.*;
 import java.util.*;
 import java.util.Random;
+import game.Player;
 
 import com.google.gson.*;
 public class Server {

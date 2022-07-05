@@ -1,3 +1,4 @@
+package game;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.geom.AffineTransform;
@@ -44,10 +45,10 @@ public class Weapon {
         
             switch (direction) {
                 case 'R':
-                    g.drawImage(image, x+gp.UNIT_SIZE/2, y+30, gp.UNIT_SIZE, gp.UNIT_SIZE, null);
+                    g.drawImage(image, x+gp.UNIT_SIZE/2, y+20, gp.UNIT_SIZE, gp.UNIT_SIZE, null);
                     break;            
                 case 'L':
-                    g.drawImage(image, x+gp.UNIT_SIZE/2, y+30, -gp.UNIT_SIZE, gp.UNIT_SIZE, null);
+                    g.drawImage(image, x+gp.UNIT_SIZE/2, y+20, -gp.UNIT_SIZE, gp.UNIT_SIZE, null);
                     break;           
                 case 'U':
                     if(!faceLeft){

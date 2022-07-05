@@ -1,3 +1,4 @@
+package game;
 public class Player {
     int x;
     int y;
@@ -66,6 +67,34 @@ public class Player {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isLogout() {
+        return logout;
+    }
+
+    public void setLogout(boolean logout) {
+        this.logout = logout;
+    }
+
+    public boolean isMove() {
+        return move;
+    }
+
+    public void setMove(boolean move) {
+        this.move = move;
+    }
+
+    public boolean isAttack() {
+        return attack;
+    }
+
+    public void setAttack(boolean attack) {
+        this.attack = attack;
+    }
+
+    public int getHealth() {
+        return health;
     }
 
     

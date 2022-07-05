@@ -1,3 +1,4 @@
+package game;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.geom.AffineTransform;
@@ -31,17 +32,10 @@ public class PlayerUI {
         this.faceLeft = faceLeft;
         this.move = move;
         this.health = health;
-        if (id ==0){
             if (move)
             this.image = getPlayerImage("sprites/AssasinMoveRight-"+step+".png");
             else
             this.image = getPlayerImage("sprites/AssasinRight-"+step+".png");
-        }else{
-            if (move)
-            this.image = getPlayerImage("sprites/BabyDragonRun-"+step+".png");
-            else
-            this.image = getPlayerImage("sprites/BabyDragon-"+step+".png");
-        }
         
     }
 

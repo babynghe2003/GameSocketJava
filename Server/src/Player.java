@@ -4,15 +4,25 @@ public class Player {
     boolean faceLeft = false;
     char direction = 'R';
     int id;
-    public boolean logout;
+    public boolean logout = false;
     public boolean move = false;
     public boolean attack = false;
 
+
     int health = 6;
+
+    //set logout
+    public void setLogout(boolean logout) {
+        this.logout = logout;
+    }
 
     // setHealth
     public void setHealth(int health) {
         this.health = health;
+    }
+    //get health
+    public int getHealth() {
+        return health;
     }
 
     //set attack
