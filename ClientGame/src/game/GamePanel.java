@@ -70,6 +70,7 @@ public class GamePanel extends JPanel implements ActionListener{
             new PlayerUI(player.getId(),player.x, player.y, this, step,player.isFaceLeft(),player.move, player.health).draw(g);
             new Weapon(player.getId(),player.x, player.y, this, player.direction, player.attack, player.isFaceLeft()).draw(g);
         }
+        map.drawWall(g);
          
     }
     public void update(){

@@ -103,7 +103,7 @@ public class Map {
 
                 g2.drawImage(Maps[i][j].image, Mapx + j * gp.UNIT_SIZE / 2, Mapy + i * gp.UNIT_SIZE / 2, gp.UNIT_SIZE / 2,
                         gp.UNIT_SIZE / 2, null);
-
+                
             }
         }
 
@@ -115,9 +115,8 @@ public class Map {
             for (int j = 0; j < col; j++) {
 
                 if (Maps[i][j] == tiles[2]) {
-                    g2.drawImage(tiles[3].image, Mapx + j * gp.UNIT_SIZE / 2,
-                            Mapy + i * gp.UNIT_SIZE / 2 - gp.UNIT_SIZE / 2 * 2 / 3, gp.UNIT_SIZE / 2, gp.UNIT_SIZE / 2,
-                            null);
+                    g2.drawImage(tiles[3].image, Mapx + j * gp.UNIT_SIZE / 2, Mapy + i * gp.UNIT_SIZE / 2 - 20, gp.UNIT_SIZE / 2,
+                        gp.UNIT_SIZE / 2, null);
                 }
 
             }
